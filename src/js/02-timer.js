@@ -31,15 +31,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function startCountdown() {
-  const selectedDate = flatpickr.parseDate(
+  const selectedDate = new Date(
     document.getElementById('datetime-picker').value
   ); // kiedy użytkownik wprowadzi datę w polu, to przyjmuje ona wartość tekstową. Potrzebujemy mieć ją w formie obiektu daty, dlatego potrzebny jest parse (wzięty z dokumentacji flatpickr)
-
+  console.log(selectedDate);
   const countdownInterval = setInterval(updateCountdown, 1000, selectedDate); // setInterval(callback, delay, arg1, arg2, ...);
   // parametr selectedDatee jest konieczny, żeby funkcja updateCountdown wiedziała, do kiedy ma odliczać czas (selectedDate jest przekazywane jako argument do funkcji updateCountdown)
 
   function updateCountdown(passedSelectedDate) {
-    const currentDate = new Date(); //obiekt, który reprezentuje bieżącą datę i czas
+    const currentDate = Date.now(); //obiekt, który reprezentuje bieżącą datę i czas
     const timeDifference = passedSelectedDate - currentDate; //ilość milisekund pozostałych do osiągnięcia wybranej daty
 
     if (timeDifference <= 0) {
